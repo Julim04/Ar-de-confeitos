@@ -1,43 +1,304 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ar de Confeitos</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:[email protected],700,900&family=DM+Sans:[email protected],500,700&family=Parisienne&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Parisienne&display=swap"
         rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Fraunces', 'serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        script: ['Parisienne', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body class="bg-[#FCF7F0]">
-    <header>
-        <nav class="flex items-center p-5 relative">
-            <span class="flex items-center gap-2">
-                <a href="#">
-                    <img src="/img/logo nav.png" alt="Logo" class="h-14">
-                </a>
-                <span style="font-family: 'Fraunces', serif;" class="text-[#4A3529] bg-[#FBF6EC] text-4xl md:text-5xl font-weight-medium">Ar de Confeitos</span>
-            </span>
-            <ul class="flex-1 flex justify-center space-x-4">
-                <li class="text-[#4A3529] hover:text-[#EF7D88]"><a href="#">Sabores</a></li>
-                <li class="text-[#4A3529] hover:text-[#EF7D88]"><a href="#">História</a></li>
-                <li class="text-[#4A3529] hover:text-[#EF7D88]"><a href="#">Encomendas</a></li>
-                <li class="text-[#4A3529] hover:text-[#EF7D88]"><a href="#">Contato</a></li>
+<body class="bg-[#FCF7F0] font-sans">
+
+    <!-- ========== HEADER / NAV ========== -->
+    <header class="sticky top-0 z-50 bg-[#FCF7F0]/90 backdrop-blur-sm shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <!-- Input checkbox (mobile) -->
+            <input type="checkbox" id="menu-toggle" class="peer hidden absolute top-4 right-4" />
+
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo + Nome (esquerda) -->
+                <div class="flex items-center gap-2">
+                    <a href="#">
+                        <img src="img/logo nav.png" alt="Logo" class="h-10 sm:h-12 md:h-14 w-auto object-contain">
+                    </a>
+                    <span
+                        class="font-display text-[#4A3529] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium whitespace-nowrap">
+                        Ar de Confeitos
+                    </span>
+                </div>
+
+                <!-- Label do hambúrguer (mobile) -->
+                <label for="menu-toggle"
+                    class="md:hidden cursor-pointer p-2 rounded-lg hover:bg-[#EF7D88]/10 transition">
+                    <svg class="w-6 h-6 text-[#4A3529]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </label>
+
+                <!-- Links do menu (desktop) -->
+                <ul class="hidden md:flex items-center gap-6 lg:gap-8 text-[#4A3529] font-medium">
+                    <li><a href="#sabores" class="hover:text-[#EF7D88] transition">Sabores</a></li>
+                    <li><a href="#historia" class="hover:text-[#EF7D88] transition">História</a></li>
+                    <li><a href="#encomendas" class="hover:text-[#EF7D88] transition">Encomendas</a></li>
+                    <li><a href="#contato" class="hover:text-[#EF7D88] transition">Contato</a></li>
+                </ul>
+
+                <!-- Botão Encomendar (desktop) -->
+                <div class="hidden md:block">
+                    <a href="#encomendas"
+                        class="bg-[#EF7D88] text-white px-4 py-2 rounded-full hover:bg-[#d95a6a] transition text-sm lg:text-base">
+                        Encomendar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Menu mobile (dropdown) - com ID para facilitar o fechamento -->
+            <ul id="mobile-menu" class="
+                md:hidden peer-checked:flex hidden flex-col items-center gap-4 pb-4 pt-2
+                text-[#4A3529] font-medium border-t border-[#4A3529]/10 mt-2
+            ">
+                <li><a href="#sabores" class="hover:text-[#EF7D88] transition">Sabores</a></li>
+                <li><a href="#historia" class="hover:text-[#EF7D88] transition">História</a></li>
+                <li><a href="#encomendas" class="hover:text-[#EF7D88] transition">Encomendas</a></li>
+                <li><a href="#contato" class="hover:text-[#EF7D88] transition">Contato</a></li>
+                <li class="w-full flex justify-center">
+                    <a href="#encomendas"
+                        class="bg-[#EF7D88] text-white px-6 py-2 rounded-full hover:bg-[#d95a6a] transition w-full max-w-xs text-center">
+                        Encomendar
+                    </a>
+                </li>
             </ul>
-            <span class="bg-[#EF7D88] text-white p-3 rounded-full ml-auto">
-                <a href="#">Encomendar</a>
-            </span>
         </nav>
     </header>
-    <section>
-        <div class="bg-[#FBF6EC] p-10">
-            <span class="font-parisienne text-2xl text-[#EF7D88]">Feito com amor</span>
+
+    <!-- HERO -->
+    <section id="hero" class="min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-8 lg:gap-12">
+                <!-- Texto -->
+                <div class="flex-1 text-center lg:text-left">
+                    <span class="font-script text-3xl sm:text-4xl md:text-5xl text-[#EF7D88]">Doce como um abraço</span>
+                    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#4A3529] mt-2">Bolos
+                        Caseiros</h1>
+                    <em class="font-display text-4xl sm:text-5xl md:text-6xl text-[#EF7D88] not-italic mt-1 block">Feitos
+                        com carinho</em>
+                    <p
+                        class="font-sans text-[#4A3529] max-w-prose mx-auto lg:mx-0 mt-4 leading-relaxed text-base sm:text-lg">
+                        Pequenas fornadas, ingredientes selecionados e receitas de família. Cada
+                        bolo sai do forno com um pedacinho de casa.
+                    </p>
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-6">
+                        <a href="#encomendas"
+                            class="bg-[#EF7D88] text-white px-6 py-3 rounded-full hover:bg-[#d95a6a] hover:scale-95 transition text-sm sm:text-base">
+                            Fazer Encomenda
+                        </a>
+                        <a href="#sabores"
+                            class="text-[#4A3529] hover:text-[#EF7D88] border border-[#4A3529] px-6 py-3 rounded-full hover:scale-95 transition text-sm sm:text-base">
+                            Ver Sabores
+                        </a>
+                    </div>
+                </div>
+                <!-- Imagem -->
+                <div class="flex-1 flex justify-center items-center">
+                    <img src="img/bolo aside.jpg" alt="Bolo caseiro"
+                        class="w-full max-w-sm sm:max-w-md lg:max-w-lg rounded-2xl shadow-2xl object-cover" />
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Sabores -->
+    <section id="sabores" class="py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center lg:text-left">
+                <span class="font-script text-xl sm:text-2xl text-[#D97A7C]">Nosso cardápio</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl text-[#4A3529]">Sabores</h2>
+                <p class="font-sans text-[#4A3529] mt-2 max-w-2xl mx-auto lg:mx-0">Receitas rotativas conforme os
+                    ingredientes disponíveis.</p>
+            </div>
+
+            <!-- Figures das imagens -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-10">
+                <!-- Bolo de Cenoura -->
+                <figure
+                    class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <img src="img/Bolo de Cenoura.jpg" alt="Bolo 1"
+                        class="w-full h-48 sm:h-56 md:h-64 rounded-t-2xl object-cover" />
+                    <div class="p-4 sm:p-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <h3 class="font-display text-lg sm:text-xl text-[#4A3529]">Bolo de Cenoura</h3>
+                            <span class="font-bold text-[#EF7D88] whitespace-nowrap text-sm sm:text-base">R$
+                                XX,XX</span>
+                        </div>
+                        <p class="font-sans text-[#4A3529] text-sm sm:text-base mt-1">Um clássico saboroso, feito com
+                            cenoura fresca e especiarias.</p>
+                    </div>
+                </figure>
+
+                <!-- Chocolate com Morango -->
+                <figure
+                    class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <img src="img/chocolate com morango.jpg" alt="Bolo 2"
+                        class="w-full h-48 sm:h-56 md:h-64 rounded-t-2xl object-cover" />
+                    <div class="p-4 sm:p-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <h3 class="font-display text-lg sm:text-xl text-[#4A3529]">Chocolate com Morango</h3>
+                            <span class="font-bold text-[#EF7D88] whitespace-nowrap text-sm sm:text-base">R$
+                                XX,XX</span>
+                        </div>
+                        <p class="font-sans text-[#4A3529] text-sm sm:text-base mt-1">Uma combinação deliciosa de
+                            chocolate e morangos frescos.</p>
+                    </div>
+                </figure>
+
+                <!-- Bolo de Milho -->
+                <figure
+                    class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <img src="img/Bolo de mihlo.jpg" alt="Bolo 3"
+                        class="w-full h-48 sm:h-56 md:h-64 rounded-t-2xl object-cover" />
+                    <div class="p-4 sm:p-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <h3 class="font-display text-lg sm:text-xl text-[#4A3529]">Bolo de Milho</h3>
+                            <span class="font-bold text-[#EF7D88] whitespace-nowrap text-sm sm:text-base">R$
+                                XX,XX</span>
+                        </div>
+                        <p class="font-sans text-[#4A3529] text-sm sm:text-base mt-1">Um bolo leve e saboroso, feito com
+                            milho fresco.</p>
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- História -->
+    <section id="historia" class="py-12 md:py-20 bg-white/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Div dentro da div para separar a imagem e o texto -->
+            <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                <!-- Imagem na esquerda do texto -->
+                <div class="lg:w-1/2">
+                    <img src="/img/logo nav.png" alt="Logo"
+                        class="w-full max-w-md mx-auto lg:mx-0 rounded-2xl shadow-lg" />
+                </div>
+                <!-- Texto a direita da imagem -->
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <span class="font-script text-2xl sm:text-3xl text-[#EF7D88]">Nossa História</span>
+                    <h2 class="font-display text-3xl sm:text-4xl text-[#4A3529] mt-2">XXXX</h2>
+                    <p class="font-sans text-[#4A3529] mt-4 leading-relaxed text-sm sm:text-base">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies
+                        aliquam, nunc nisl aliquet nunc, vitae aliquet nunc nisl eget nunc.
+                    </p>
+                    <ul
+                        class="font-sans marker:text-[#EF7D88] text-[#4A3529] mt-4 list-disc list-inside space-y-1 text-sm sm:text-base">
+                        <li class="ml-4">Massas Frescas</li>
+                        <li class="ml-4">Ingredientes selecionados</li>
+                        <li class="ml-4">Personalização para aniversários e casamentos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Encomendas / Contato (chamada para ação) -->
+    <section id="encomendas" class="py-12 sm:py-16 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-[#EF7D88] rounded-3xl p-6 sm:p-8 md:p-10 lg:p-14 text-center lg:text-left">
+                <span class="font-script text-2xl sm:text-3xl text-white">Podemos adoçar o seu dia?</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-white mt-2">Faça sua encomenda agora</h2>
+                <p class="text-white mt-4 max-w-2xl mx-auto lg:mx-0 text-sm sm:text-base leading-relaxed">
+                    Pedidos com 48h de antecedência. Entregamos somente na região de Volta Redonda - é só chamar no
+                    Whatsapp
+                    que combinamos tudo com muito carinho.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 mt-6">
+                    <a href="https://wa.me/5521999999999" target="_blank"
+                        class="inline-block bg-white text-[#EF7D88] font-bold py-2 px-6 rounded-full transition-all duration-300 hover:bg-gray-200 hover:scale-105 text-sm sm:text-base">
+                        Falar no WhatsApp
+                    </a>
+                    <a href="#sabores"
+                        class="inline-block text-white border border-white py-2 px-6 rounded-full transition-all duration-300 hover:bg-[#EF7D88] hover:scale-105 text-sm sm:text-base">
+                        Ver Cardápio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer id="contato" class="bg-[#4A3529] text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <!-- Div de direitos reservados (sozinha) -->
+            <div class="text-center pb-6 border-b border-white/20">
+                <p class="text-sm sm:text-base">&copy; 2025 Ar de Confeitos. Todos os direitos reservados.</p>
+            </div>
+
+            <!-- Container das 3 divs lado a lado -->
+            <div class="flex flex-col sm:flex-row flex-wrap justify-around gap-8 pt-6 text-center sm:text-left">
+                <!-- Logo + nome -->
+                <div class="flex flex-col items-center sm:items-start gap-2">
+                    <img src="/img/logo nav.png" alt="Logo" class="h-10 sm:h-12" />
+                    <span class="font-display text-xl sm:text-2xl">Ar de Confeitos</span>
+                </div>
+
+                <!-- Contato -->
+                <div>
+                    <h4 class="font-display text-lg sm:text-xl mb-2">Contato</h4>
+                    <ul class="font-sans space-y-1 text-sm sm:text-base">
+                        <li>Whatsapp: (24) 99999-9999</li>
+                        <li>Email: contato@ardeconfeitos.com</li>
+                        <li>Instagram: @ardeconfeitosvr</li>
+                    </ul>
+                </div>
+
+                <!-- Horário -->
+                <div>
+                    <h4 class="font-display text-lg sm:text-xl mb-2">Horário</h4>
+                    <ul class="font-sans space-y-1 text-sm sm:text-base">
+                        <li>Segunda a Sexta: 08:00 - 18:00</li>
+                        <li>Sábado: 08:00 - 14:00</li>
+                        <li>Encomendas com 48h de antecedência</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para fechar o menu ao clicar em um link -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+            const checkbox = document.getElementById('menu-toggle');
+
+            mobileMenuLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    checkbox.checked = false;
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
